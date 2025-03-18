@@ -6,18 +6,57 @@ import { useVueform, Vueform } from '@vueform/vueform'
 
 export default {
   mixins: [Vueform],
-  setup(props, context)
-  {
+  setup(props, context) {
     const form = useVueform(props, context)
 
     const vueform = ref({
       size: 'md',
       displayErrors: false,
+      steps: {
+        page0: {
+          label: 'Step 1',
+          elements: [
+            'container_1',
+            'divider_2',
+            'container_2',
+            'container_3',
+            'container_4',
+          ],
+        },
+        page1: {
+          label: 'Step 2',
+          elements: [
+            'page_title',
+            'divider',
+            'container',
+            'text_1',
+            'text',
+            'birthday',
+            'divider_1',
+          ],
+        },
+        page2: {
+          label: 'Step 3',
+          elements: [
+            'h2',
+            'divider_3',
+            'number',
+            'number_1',
+            'email',
+            'text_5',
+            'text_2',
+            'text_3',
+            'text_4',
+            'divider_4',
+            'terms',
+          ],
+        },
+      },
       addClass: 'vf-create-account',
       schema: {
         page_title: {
           type: 'static',
-          content: 'Create account',
+          content: 'Personal Details',
           tag: 'h1',
         },
         divider: {
@@ -56,105 +95,225 @@ export default {
               ],
             },
           },
-          description: 'Make sure it matches your legal name',
         },
-        birthday: {
-          type: 'date',
-          placeholder: 'Birthday',
-          fieldName: 'Birthday',
+        text_1: {
+          type: 'text',
+          placeholder: 'Initial Name',
+          columns: {
+            lg: {
+              container: 12,
+            },
+          },
+        },
+        text: {
+          type: 'text',
+          placeholder: 'NIC',
           rules: [
             'required',
+            'size:12',
           ],
-          description: 'Your birthday is not visible others.',
-          displayFormat: 'MMMM Do, YYYY',
+          info: 'Only if you don\&#39;t have a NIC number enter your mobile number',
         },
-        country: {
-          type: 'select',
-          search: true,
-          native: false,
-          inputType: 'search',
-          autocomplete: 'disabled',
-          placeholder: 'Country',
-          items: '/json/countries.json',
+       
+
+
+        
+        h2: {
+          type: 'static',
+          tag: 'h2',
+          content: 'Contact Details',
         },
-        state: {
-          type: 'select',
-          search: true,
-          native: false,
-          inputType: 'search',
-          autocomplete: 'disabled',
-          placeholder: 'State',
-          items: '/json/states.json',
-          conditions: [
-            [
-              'country',
-              'in',
-              [
-                'US',
-              ],
-            ],
+        divider_3: {
+          type: 'static',
+          tag: 'hr',
+        },
+        number: {
+          type: 'text',
+          inputType: 'number',
+          rules: [
+            'required',
+            'numeric',
           ],
-        },
-        phone: {
-          type: 'phone',
+          autocomplete: 'off',
           placeholder: 'Phone',
+          columns: {
+            lg: {
+              container: 6,
+            },
+          },
+        },
+        number_1: {
+          type: 'text',
+          inputType: 'number',
           rules: [
             'required',
+            'numeric',
           ],
-          fieldName: 'Phone',
-          allowIncomplete: true,
-          unmask: true,
+          autocomplete: 'off',
+          placeholder: 'Whatsapp',
+          columns: {
+            lg: {
+              container: 6,
+            },
+          },
         },
         email: {
           type: 'text',
           inputType: 'email',
           rules: [
-            'required',
+            'nullable',
             'max:255',
             'email',
           ],
           placeholder: 'Email',
           fieldName: 'Email',
-          description: 'You will receive a confirmation letter to this email.',
         },
-        password: {
+        text_5: {
           type: 'text',
-          inputType: 'password',
-          rules: [
-            'required',
-            'min:8',
-            'same:password_confirmation',
-          ],
-          fieldName: 'Password',
-          placeholder: 'Password',
-        },
-        password_confirmation: {
-          type: 'text',
-          inputType: 'password',
           rules: [
             'required',
           ],
-          fieldName: 'Password confirmation',
-          placeholder: 'Password again',
+          placeholder: "Guradian's Contact",
+        },
+        text_2: {
+          type: 'text',
+          label: 'Address 1',
+          rules: [
+            'required',
+          ],
+          placeholder: 'Eg : 252 3/A',
+        },
+        text_3: {
+          type: 'text',
+          label: 'Address 2',
+          rules: [
+            'required',
+          ],
+          placeholder: 'Ex: Pieterz Place',
+        },
+        text_4: {
+          type: 'text',
+          label: 'Address 3',
+          rules: [
+            'required',
+          ],
+          placeholder: 'Ex: Nugegoda',
+        },
+        divider_4: {
+          type: 'static',
+          tag: 'hr',
         },
         terms: {
           type: 'checkbox',
           text: 'I accept the Terms & Conditions & Privacy Policy',
         },
-        marketing_emails: {
-          type: 'checkbox',
-          text: 'I want to recieve marketing emails',
-        },
+        
         divider_1: {
           type: 'static',
           tag: 'hr',
         },
-        register: {
-          type: 'button',
-          submits: true,
-          buttonLabel: 'Create account',
-          full: true,
-          size: 'lg',
+        container_1: {
+          type: 'group',
+          schema: {
+            h1: {
+              type: 'static',
+              tag: 'h1',
+              content: 'SAKYA REGISTRATION 2027',
+            },
+          },
+        },
+        divider_2: {
+          type: 'static',
+          tag: 'hr',
+        },
+        container_2: {
+          type: 'group',
+          schema: {
+            radiogroup: {
+              type: 'radiogroup',
+              items: [
+                {
+                  value: '1',
+                  label: 'Nugegoda',
+                },
+                {
+                  value: '2',
+                  label: 'Panadura',
+                },
+                {
+                  value: '3',
+                  label: 'Kiribathgoda',
+                },
+                {
+                  value: '4',
+                  label: 'Gampaha',
+                },
+                {
+                  value: '5',
+                  label: 'Online',
+                },
+              ],
+              label: 'Branch',
+              view: 'tabs',
+              rules: [
+                'required',
+              ],
+            },
+          },
+        },
+        container_3: {
+          type: 'group',
+          schema: {
+            radiogroup_1: {
+              type: 'radiogroup',
+              items: [
+                {
+                  value: '1',
+                  label: 'Commerce',
+                },
+                {
+                  value: '2',
+                  label: 'Maths | Science',
+                },
+                {
+                  value: '3',
+                  label: 'Arts',
+                },
+                {
+                  value: '4',
+                  label: 'Technology',
+                },
+              ],
+              label: 'Stream',
+              view: 'tabs',
+              rules: [
+                'required',
+              ],
+            },
+          },
+        },
+        container_4: {
+          type: 'group',
+          schema: {
+            radiogroup_2: {
+              type: 'radiogroup',
+              items: [
+                {
+                  value: '1',
+                  label: 'Sinhala',
+                },
+                {
+                  value: '2',
+                  label: 'English',
+                },
+              ],
+              label: 'Medium',
+              view: 'tabs',
+              rules: [
+                'required',
+              ],
+            },
+          },
         },
       },
     })
@@ -416,14 +575,14 @@ export default {
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
   --vf-border-width-table: 1px;
-  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-btn: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0, 0, 0, 0);
   --vf-radius-input: 0.25rem;
   --vf-radius-input-sm: 0.25rem;
   --vf-radius-input-lg: 0.25rem;

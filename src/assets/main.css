@@ -33,3 +33,10 @@ a,
     padding: 0 2rem;
   }
 }
+
+.form-container {
+  max-width: 600px; /* Adjust as needed */
+  margin: 0 auto; /* Centering */
+  padding: 20px;
+  width: 100%; /* Ensures responsiveness */
+}
